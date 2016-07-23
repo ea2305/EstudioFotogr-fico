@@ -1,4 +1,4 @@
-### Simulación de estudio fotográfico
+# Simulación de estudio fotográfico
 
 Práctica de scrum Julio 22 de 2016
 Envio de solicitudes de fotógrafo y editoriales.
