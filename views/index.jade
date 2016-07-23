@@ -1,10 +1,17 @@
-extends layout
 
-block content
-	h1= title
-	p Welcome to #{title}
+//  Si desea manejar html plano puede linkear el colocar el html
+	en la carpeta html y llamarlo de la siguiente forma.
+	
+include html/index.html
 
-	form(action="/",method="post")
-		label Enter name
-		input(type="text",name="name")
-		input(type="submit")
+//
+	extends layout
+
+	block content
+		h1= title
+		p Welcome to #{title}
+
+		form(action="/db/insert-user",method="post")
+			label Enter name
+			input(type="text",name="name")
+			input(type="submit")
