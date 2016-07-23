@@ -1,17 +1,28 @@
 
 //  Si desea manejar html plano puede linkear el colocar el html
 	en la carpeta html y llamarlo de la siguiente forma.
-	
-include html/index.html
 
-//
-	extends layout
+//include html/index.html
 
-	block content
-		h1= title
-		p Welcome to #{title}
+extends layout
 
-		form(action="/db/insert-user",method="post")
-			label Enter name
-			input(type="text",name="name")
-			input(type="submit")
+block content
+	h1= title
+	p Welcome to #{title}
+
+	form(action="/db/insert-user",method="post")
+		label Enter name
+		br
+		input(type="text",name="dni",placeholder="DNI")
+		br
+		input(type="text",name="nombre",placeholder="nombre")
+		br
+		input(type="text",name="direccion",placeholder="dirección")
+		br
+		input(type="text",name="poblacion",placeholder="población")
+		br
+		input(type="text",name="telefono",placeholder="teléfono")
+		br
+		input(type="text",name="nivel",placeholder="nivel")
+		br
+		input(type="submit")
