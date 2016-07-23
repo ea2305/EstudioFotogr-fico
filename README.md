@@ -18,3 +18,14 @@ npm install
 ```
 npm start
 ```
+
+## Configuración de base de datos
+Definir 
+
+* estudio
+
+Como base de datos y ejecutar query: 
+```
+estudio.sql
+```
+En su manejador de preferencia.
