@@ -12,4 +12,9 @@ router.get('/home', function(req, res, next) {
   res.render('home', { title: 'Home' });
 });
 
+/* GET home page. */
+router.get('/fotografo-form', function(req, res, next) {
+  res.render('fotografoForm', { title: 'Formulario Fotografo' });
+});
+
 module.exports = router;
