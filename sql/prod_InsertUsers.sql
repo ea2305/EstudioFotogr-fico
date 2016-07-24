@@ -14,7 +14,6 @@ BEGIN
 	VALUES
 	(NULL,dni,nombre,direccion,poblacion,nivel);
 	
-    
     #Insertamos los datos en la tabla de telefonos de fotografos
     INSERT INTO `estudio`.`TELEFONO_FOTOGRAFO`
 	(`idFotografo`,
