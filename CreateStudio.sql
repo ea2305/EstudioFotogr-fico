@@ -32,7 +32,7 @@ CREATE TABLE `FOTOGRAFO` (
   `poblacion` varchar(45) DEFAULT NULL,
   `nivel` int(11) DEFAULT NULL,
   PRIMARY KEY (`idFotografo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,8 +41,39 @@ CREATE TABLE `FOTOGRAFO` (
 
 LOCK TABLES `FOTOGRAFO` WRITE;
 /*!40000 ALTER TABLE `FOTOGRAFO` DISABLE KEYS */;
-INSERT INTO `FOTOGRAFO` VALUES (1,'asd','Elihu','salle','tuxtla',3),(2,'holamundo','Elihu Alejandro','La Salle','Tuxtla',1),(3,'cuae','Elihu Alejandro','La Salle','Tuxtla',1),(4,'nmnm','bbbb','bvvv','kkkk',0);
+INSERT INTO `FOTOGRAFO` VALUES (1,'asd','Elihu','salle','tuxtla',3),(2,'holamundo','Elihu Alejandro','La Salle','Tuxtla',1),(3,'cuae','Elihu Alejandro','La Salle','Tuxtla',1),(4,'nmnm','bbbb','bvvv','kkkk',0),(5,'annn','mmm','bbb','pop',9),(6,'mono','mana','nono','klkl',9),(7,'ññ','kl','mora','tux',9);
 /*!40000 ALTER TABLE `FOTOGRAFO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `REPORTAJE`
+--
+
+DROP TABLE IF EXISTS `REPORTAJE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `REPORTAJE` (
+  `idReportaje` int(11) NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(45) DEFAULT NULL,
+  `titulo` varchar(45) DEFAULT NULL,
+  `fotografo` int(11) DEFAULT NULL,
+  `num_fotos` int(11) DEFAULT NULL,
+  `nivel` int(11) DEFAULT NULL,
+  `tematica` varchar(200) DEFAULT NULL,
+  `fecha_entrega` date DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  PRIMARY KEY (`idReportaje`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `REPORTAJE`
+--
+
+LOCK TABLES `REPORTAJE` WRITE;
+/*!40000 ALTER TABLE `REPORTAJE` DISABLE KEYS */;
+INSERT INTO `REPORTAJE` VALUES (1,'elel','Mono araña',2,1,10,'Nature','0000-00-00',300),(2,'koala','Kola',4,4,1,'Nature','0000-00-00',500),(3,'mm','mm',7,7,7,'mm','0000-00-00',22),(4,'lol','lol',9,9,9,'lol','2016-07-19',6),(5,'asd134','Reportaje nuevo',3,2,1,'Test','2016-07-20',200);
+/*!40000 ALTER TABLE `REPORTAJE` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -65,7 +96,7 @@ CREATE TABLE `TELEFONO_FOTOGRAFO` (
 
 LOCK TABLES `TELEFONO_FOTOGRAFO` WRITE;
 /*!40000 ALTER TABLE `TELEFONO_FOTOGRAFO` DISABLE KEYS */;
-INSERT INTO `TELEFONO_FOTOGRAFO` VALUES (1,1234567890),(2,1234567890),(3,1234567890),(4,878787);
+INSERT INTO `TELEFONO_FOTOGRAFO` VALUES (1,1234567890),(2,1234567890),(3,1234567890),(4,878787),(5,878787),(6,999999),(7,123123);
 /*!40000 ALTER TABLE `TELEFONO_FOTOGRAFO` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,13 +127,52 @@ BEGIN
 	VALUES
 	(NULL,dni,nombre,direccion,poblacion,nivel);
 	
+    SET @USER = LAST_INSERT_ID();
     
     #Insertamos los datos en la tabla de telefonos de fotografos
     INSERT INTO `estudio`.`TELEFONO_FOTOGRAFO`
 	(`idFotografo`,
 	`telefono`)
 	VALUES
-	(LAST_INSERT_ID(),telefono);
+	(@USER,telefono);
+    
+    SELECT @USER;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `make_report` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `make_report`(IN codigo VARCHAR(45),IN titulo VARCHAR(45),IN fotografo INT,IN num_fotos INT,IN nivel INT,IN tematica VARCHAR(200),IN fecha_entrega DATE,IN precio REAL)
+BEGIN 
+
+	#Realizamos insercion a la tabla reportaje
+    INSERT INTO `estudio`.`REPORTAJE`
+	(`idReportaje`,
+	`codigo`,
+	`titulo`,
+	`fotografo`,
+	`num_fotos`,
+	`nivel`,
+	`tematica`,
+	`fecha_entrega`,
+	`precio`)
+	VALUES
+	(NULL,codigo,titulo,fotografo,num_fotos,nivel,tematica, fecha_entrega,precio);
+    
+    SELECT LAST_INSERT_ID();
+
 
 END ;;
 DELIMITER ;
@@ -120,4 +190,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-23 23:40:48
+-- Dump completed on 2016-07-24 13:21:05
