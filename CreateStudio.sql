@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `estudio` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `estudio`;
 -- MySQL dump 10.13  Distrib 5.7.12, for osx10.9 (x86_64)
 --
 -- Host: localhost    Database: estudio
@@ -66,6 +68,48 @@ LOCK TABLES `TELEFONO_FOTOGRAFO` WRITE;
 INSERT INTO `TELEFONO_FOTOGRAFO` VALUES (1,1234567890),(2,1234567890),(3,1234567890),(4,878787);
 /*!40000 ALTER TABLE `TELEFONO_FOTOGRAFO` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'estudio'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `insert_user` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_user`(IN dni VARCHAR(45),IN nombre VARCHAR(45),IN direccion VARCHAR(45),IN poblacion VARCHAR(45),IN telefono INT(10),IN nivel INT)
+BEGIN 
+
+	#Insertamos los datos en la tabla fotografos
+	INSERT INTO `estudio`.`FOTOGRAFO`
+	(`idFotografo`,
+	`dni`,
+	`nombre`,
+	`direccion`,
+	`poblacion`,
+	`nivel`)
+	VALUES
+	(NULL,dni,nombre,direccion,poblacion,nivel);
+	
+    
+    #Insertamos los datos en la tabla de telefonos de fotografos
+    INSERT INTO `estudio`.`TELEFONO_FOTOGRAFO`
+	(`idFotografo`,
+	`telefono`)
+	VALUES
+	(LAST_INSERT_ID(),telefono);
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -76,4 +120,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-23 17:34:33
+-- Dump completed on 2016-07-23 23:40:48
