@@ -1,2 +1,23 @@
 html
 	h1 Home !
+
+	form(action="/db/insert-report",method="post")
+		label Enter name
+		br
+		input(type="text",name="codigo",placeholder="codigo")
+		br
+		input(type="text",name="titulo",placeholder="titulo")
+		br
+		input(type="number",name="fotografo",placeholder="fotografo")
+		br
+		input(type="number",name="num_fotos",placeholder="num_fotos")
+		br
+		input(type="number",name="nivel",placeholder="nivel")
+		br
+		input(type="text",name="tematica",placeholder="tematica")
+		br
+		input(type="date",name="fecha_entrega",placeholder="fecha_entrega")
+		br
+		input(type="number",name="precio",placeholder="precio")
+		br
+		input(type="submit")
