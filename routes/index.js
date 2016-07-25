@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   	res.render('index', { title: 'Express' });
@@ -19,7 +18,7 @@ router.get('/fotografo-form', function(req, res, next) {
 
 /* GET home page. */
 router.get('/reportaje-concluido', function(req, res, next) {
-  res.render('fotografoForm', { title: 'Formulario Reportajes' });
+  res.render('reportComplet', { title: 'Formulario Reportajes' });
 });
 
 module.exports = router;
