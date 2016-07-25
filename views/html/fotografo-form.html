@@ -3,14 +3,16 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Solicitud Fotografo</title>
-	<!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
-	<link rel="stylesheet" href="../../public/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<!-- <link rel="stylesheet" href="../../public/stylesheets/style.css"> -->
 </head>
 <body>
 	<section id="Solicitud_Empleo">
 		<form action="/db/insert-user",method="post">
 			<label>Curriculum</label><br>
 			<input type="text" name="curriculum" placeholder="Nombre del Curriculum">
+			<br>
+			<input type="file">
 			<br>
 			<label>Equipo Fotografico</label><br>
 			<input type="radio" name="equipo_fotografico">Si

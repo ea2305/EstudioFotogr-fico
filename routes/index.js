@@ -13,12 +13,17 @@ router.get('/home', function(req, res, next) {
 
 /* GET home page. */
 router.get('/fotografo-form', function(req, res, next) {
-  res.render('fotografoForm', { title: 'Formulario Fotografo' });
+  res.render('fotografoForm');
 });
 
 /* GET home page. */
 router.get('/reportaje-concluido', function(req, res, next) {
-  res.render('reportComplet', { title: 'Formulario Reportajes' });
+  res.render('reportComplet');
+});
+
+/* GET home page. */
+router.get('/soli-exclusiva', function(req, res, next) {
+  res.render('soliExclusiva');
 });
 
 module.exports = router;

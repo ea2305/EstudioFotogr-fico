@@ -14,26 +14,49 @@ database.connect();
 //Post
 router.post('/insert-user', function(req, res, next) {
 
-	var nivel = req.body.nivel || 0;
-	var statement = 'CALL insert_user("' + req.body.dni +
-				'","' + req.body.nombre + 
-				'","' + req.body.direccion +
-				'","' + req.body.poblacion + 
-				'",'  + req.body.telefono + 
-				','   + nivel + ')';
+	var E = req.body;//Reneme object
+	var nivel = E.nivel || 0;
 
-	database.query(statement,(err) => {
+	//Creacion de sentencia
+	var statement = 'CALL insert_user(?,?,?,?,?,?)';
+	//Envio de paquetes de remplazo en statement por ?
+	var data_set = [E.dni,E.nombre,E.direccion,E.poblacion,E.telefono,nivel];
+
+	database.query(statement, data_set ,(err, rows, fields) => {
 		if(!err){
 			console.log("Insert was success [ok]");
+			console.log( rows );
 			res.send( "Datos registrados" );
 		}else{
 			console.log("Insert was bad [error]");
 			res.send( "Error" );
 		}
 	});
-	
-  	//res.render('index', { title: 'Express' });
 });
 
+
+//Post
+router.post('/insert-report', function(req, res, next) {
+
+	var E = req.body;//Renombramiento
+	var nivel = req.body.nivel || 0;
+
+	//Conversion para formato en la base de datos
+	var new_date = new Date(req.body.fecha_entrega).toISOString();
+	var statement = 'CALL make_report(?,?,?,?,?,?,?,?)';
+	var data_set = [E.codigo,E.titulo,E.fotografo,E.num_fotos,nivel,E.tematica,new_date,E.precio]
+
+	database.query(statement,data_set,(err, rows, fields) => {
+		if(!err){
+			console.log("Insert was success [ok]");
+			console.log( rows );
+			res.send( "Datos registrados" );
+		}else{
+			console.log(err);
+			console.log("Insert was bad [error]");
+			res.send( "Error" );
+		}
+	});
+});
 
 module.exports = router;
