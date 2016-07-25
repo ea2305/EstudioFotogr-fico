@@ -2,16 +2,17 @@
 <html>
 <head>
 	<title>HTML example</title>
-	<link rel="stylesheet" href="../../public/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
 	<section id="Solicitud_Empleo">
 		<form action="/db/insert-user",method="post">
 			<label>Curriculum</label><br>
-			<input type="text" name="curriculum" placeholder="Curriculum">
+			<input type="text" name="curriculum" placeholder="Nombre del Curriculum">
 			<br>
 			<label>Equipo Fotografico</label><br>
-			<input type="text" name="equipo_fotografico" placeholder="Equipo Fotografico">
+			<input type="radio" name="equipo_fotografico">Si
+			<input type="radio" name="equipo_fotografico">No
 			<br>
 			<label>Book</label><br>
 			<input type="text" name="book" placeholder="Book">
