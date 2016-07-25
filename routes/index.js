@@ -16,9 +16,9 @@ router.get('/fotografo-form', function(req, res, next) {
   res.render('fotografoForm', { title: 'Formulario Fotografo' });
 });
 
-// /* GET home page. */
-// router.get('/reportaje-concluido', function(req, res, next) {
-//   res.render('reportComplet', { title: 'Formulario Reportajes' });
-// });
+/* GET home page. */
+router.get('/reportaje-concluido', function(req, res, next) {
+  res.render('reportComplet', { title: 'Formulario Reportajes' });
+});
 
 module.exports = router;
